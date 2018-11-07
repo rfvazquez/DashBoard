@@ -1,0 +1,78 @@
+﻿@section scripts{
+    @Scripts.Render("~/Scripts/Relatorio/VendasPendentes.js")
+}
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+@Html.Hidden("VendasPendentesURL", Url.Action("DetalhamentoVendasPendetes", "Relatorio"))
+
+<div class="wait">AGUARDE UM INSTANTE</div>
+<div class="error"></div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+            <h4 class="example-title">Descrição dos Itens</h4>
+            <table class="table-internal" style="margin-top:15px;" id="tblDescricaoItens">
+                <thead>
+                    <tr class="tr-head">
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Login
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Documento Cliente
+                        </th>
+                        <th>
+                            Nome Cliente
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>
+                            Cidade
+                        </th>
+                        <th>
+                            Telefone
+                        </th>
+                        <th>
+                            Internet
+                        </th>
+                        <th>
+                            Televisão
+                        </th>
+                        <th>
+                            Produtos Adicionais
+                        </th>
+                        <th>
+                            Tabela
+                        </th>
+                        <th>
+                            Grupo
+                        </th>
+                        <th>
+                            Categoria
+                        </th>
+                        <th>
+                            Oferta
+                        </th>
+                        <th>
+                            Grupo de Promoção
+                        </th>
+                        <th>
+                            Promoção
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>

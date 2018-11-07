@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Indigosoft_Workflow_WoozaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="STP_CONTROLE_FILA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="STP_DETALHAMENTO_DASHBOARD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DtInicio" Type="datetime" Mode="In" />
+          <Parameter Name="DtFim" Type="datetime" Mode="In" />
+          <Parameter Name="modalidade" Type="varchar" Mode="In" />
+          <Parameter Name="tipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="STP_DETALHAMENTO_ERROS_SIEBEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DtInicio" Type="datetime" Mode="In" />
+          <Parameter Name="DtFim" Type="datetime" Mode="In" />
+          <Parameter Name="Modalidade" Type="varchar" Mode="In" />
+          <Parameter Name="Tabulacao" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="STP_LOGIN_DASHBOARD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="login" Type="varchar" Mode="In" />
+          <Parameter Name="senha" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="STP_TOTAL_TIPO_DASHBOARD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DtInicio" Type="datetime" Mode="In" />
+          <Parameter Name="DtFim" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="Indigosoft_Workflow_WoozaModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Indigosoft_Workflow_WoozaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Indigosoft_Workflow_WoozaEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="STP_LOGIN_DASHBOARD" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.UsuarioResult)">
+            <Parameter Name="login" Mode="In" Type="String" />
+            <Parameter Name="senha" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="STP_TOTAL_TIPO_DASHBOARD" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.TotalTipoResult)">
+            <Parameter Name="DtInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="DtFim" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="STP_DETALHAMENTO_DASHBOARD" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.DetalhamentoResult)">
+            <Parameter Name="DtInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="DtFim" Mode="In" Type="DateTime" />
+            <Parameter Name="modalidade" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="STP_DETALHAMENTO_ERROS_SIEBEL" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.DetalhamentoErroSiebelResult)">
+            <Parameter Name="DtInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="DtFim" Mode="In" Type="DateTime" />
+            <Parameter Name="Modalidade" Mode="In" Type="String" />
+            <Parameter Name="Tabulacao" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="STP_CONTROLE_FILA" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.ControleFila)" />
+        </EntityContainer>
+        <ComplexType Name="UsuarioResult">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nome" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Senha" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="TotalTipoResult" >
+          <Property Type="String" Name="Modalidade" Nullable="false" />
+          <Property Type="Int32" Name="Sucesso" Nullable="false" />
+          <Property Type="Int32" Name="Erro" Nullable="false" />
+          <Property Type="Decimal" Name="Resultado" Nullable="false" />
+          <Property Type="Int32" Name="Aptas" Nullable="false" />
+          <Property Type="Decimal" Name="PercentualAptas" Nullable="false" />
+          <Property Type="String" Name="CorLinha" Nullable="false" />
+          <Property Type="Int32" Name="Total" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DetalhamentoResult" >
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="CorLinha" Nullable="false" />
+          <Property Type="String" Name="Modalidade" Nullable="false" />
+          <Property Type="String" Name="Tabulacao" Nullable="false" />
+          <Property Type="Int32" Name="Total" Nullable="false" />
+          <Property Type="Decimal" Name="percentual" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DetalhamentoErroSiebelResult">
+          <Property Type="String" Name="CPF" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Nome" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="nacimento" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="NomeMae" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Telefone" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Plano" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="tpPagamento" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="modeloPagamento" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CEP" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="pais" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="cidade" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="rua" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="numero" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="complemento" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="criacao" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="modificacao" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="numeroPedido" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CodPDV" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="numeroChip" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="modalidade" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="diaPgt" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="operadora" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="operadoraAtual" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="tp" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="tabulacaoWooza" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="descricao" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="janelaPortabilidade" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="CorLinha" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ControleFila" >
+          <Property Type="String" Name="FILA" Nullable="false" />
+          <Property Type="Int32" Name="TOTAL_DISPONIVEIS" Nullable="false" />
+          <Property Type="Int32" Name="INSTANCIAS" Nullable="false" />
+          <Property Type="Int32" Name="EM_USO" Nullable="false" />
+          <Property Type="Int32" Name="MAQUINAS" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Indigosoft_Workflow_WoozaModelStoreContainer" CdmEntityContainer="Indigosoft_Workflow_WoozaEntities" >
+          <FunctionImportMapping FunctionImportName="STP_LOGIN_DASHBOARD" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_LOGIN_DASHBOARD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.UsuarioResult">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STP_TOTAL_TIPO_DASHBOARD" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_TOTAL_TIPO_DASHBOARD" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.TotalTipoResult" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STP_DETALHAMENTO_DASHBOARD" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_DETALHAMENTO_DASHBOARD" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.DetalhamentoResult">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CorLinha" ColumnName="CorLinha" />
+                <ScalarProperty Name="Modalidade" ColumnName="Modalidade" />
+                <ScalarProperty Name="Tabulacao" ColumnName="Tabulacao" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STP_DETALHAMENTO_ERROS_SIEBEL" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_DETALHAMENTO_ERROS_SIEBEL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.DetalhamentoErroSiebelResult">
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="nacimento" ColumnName="nacimento" />
+                <ScalarProperty Name="NomeMae" ColumnName="NomeMae" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Plano" ColumnName="Plano" />
+                <ScalarProperty Name="tpPagamento" ColumnName="tpPagamento" />
+                <ScalarProperty Name="modeloPagamento" ColumnName="modeloPagamento" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="rua" ColumnName="rua" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="criacao" ColumnName="criacao" />
+                <ScalarProperty Name="modificacao" ColumnName="modificacao" />
+                <ScalarProperty Name="numeroPedido" ColumnName="numeroPedido" />
+                <ScalarProperty Name="CodPDV" ColumnName="CodPDV" />
+                <ScalarProperty Name="numeroChip" ColumnName="numeroChip" />
+                <ScalarProperty Name="modalidade" ColumnName="modalidade" />
+                <ScalarProperty Name="diaPgt" ColumnName="diaPgt" />
+                <ScalarProperty Name="operadora" ColumnName="operadora" />
+                <ScalarProperty Name="operadoraAtual" ColumnName="operadoraAtual" />
+                <ScalarProperty Name="tp" ColumnName="tp" />
+                <ScalarProperty Name="tabulacaoWooza" ColumnName="tabulacaoWooza" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="janelaPortabilidade" ColumnName="janelaPortabilidade" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STP_CONTROLE_FILA" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_CONTROLE_FILA" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.ControleFila">
+                <ScalarProperty Name="FILA" ColumnName="FILA" />
+                <ScalarProperty Name="TOTAL_DISPONIVEIS" ColumnName="TOTAL_DISPONIVEIS" />
+                <ScalarProperty Name="INSTANCIAS" ColumnName="INSTANCIAS" />
+                <ScalarProperty Name="EM_USO" ColumnName="EM_USO" />
+                <ScalarProperty Name="MAQUINAS" ColumnName="MAQUINAS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

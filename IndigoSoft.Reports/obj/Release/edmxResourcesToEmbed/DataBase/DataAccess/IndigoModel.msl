@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Indigosoft_Workflow_WoozaModelStoreContainer" CdmEntityContainer="Indigosoft_Workflow_WoozaEntities">
+    <FunctionImportMapping FunctionImportName="STP_LOGIN_DASHBOARD" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_LOGIN_DASHBOARD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.UsuarioResult">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="STP_TOTAL_TIPO_DASHBOARD" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_TOTAL_TIPO_DASHBOARD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.TotalTipoResult" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="STP_DETALHAMENTO_DASHBOARD" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_DETALHAMENTO_DASHBOARD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.DetalhamentoResult">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CorLinha" ColumnName="CorLinha" />
+          <ScalarProperty Name="Modalidade" ColumnName="Modalidade" />
+          <ScalarProperty Name="Tabulacao" ColumnName="Tabulacao" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="STP_DETALHAMENTO_ERROS_SIEBEL" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_DETALHAMENTO_ERROS_SIEBEL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.DetalhamentoErroSiebelResult">
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="nacimento" ColumnName="nacimento" />
+          <ScalarProperty Name="NomeMae" ColumnName="NomeMae" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Plano" ColumnName="Plano" />
+          <ScalarProperty Name="tpPagamento" ColumnName="tpPagamento" />
+          <ScalarProperty Name="modeloPagamento" ColumnName="modeloPagamento" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="pais" ColumnName="pais" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="rua" ColumnName="rua" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="criacao" ColumnName="criacao" />
+          <ScalarProperty Name="modificacao" ColumnName="modificacao" />
+          <ScalarProperty Name="numeroPedido" ColumnName="numeroPedido" />
+          <ScalarProperty Name="CodPDV" ColumnName="CodPDV" />
+          <ScalarProperty Name="numeroChip" ColumnName="numeroChip" />
+          <ScalarProperty Name="modalidade" ColumnName="modalidade" />
+          <ScalarProperty Name="diaPgt" ColumnName="diaPgt" />
+          <ScalarProperty Name="operadora" ColumnName="operadora" />
+          <ScalarProperty Name="operadoraAtual" ColumnName="operadoraAtual" />
+          <ScalarProperty Name="tp" ColumnName="tp" />
+          <ScalarProperty Name="tabulacaoWooza" ColumnName="tabulacaoWooza" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="janelaPortabilidade" ColumnName="janelaPortabilidade" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="STP_CONTROLE_FILA" FunctionName="Indigosoft_Workflow_WoozaModel.Store.STP_CONTROLE_FILA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Indigosoft_Workflow_WoozaModel.ControleFila">
+          <ScalarProperty Name="FILA" ColumnName="FILA" />
+          <ScalarProperty Name="TOTAL_DISPONIVEIS" ColumnName="TOTAL_DISPONIVEIS" />
+          <ScalarProperty Name="INSTANCIAS" ColumnName="INSTANCIAS" />
+          <ScalarProperty Name="EM_USO" ColumnName="EM_USO" />
+          <ScalarProperty Name="MAQUINAS" ColumnName="MAQUINAS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,130 @@
+﻿@section scripts{
+    @Scripts.Render("~/Scripts/Relatorio/Cobertura.js")
+}
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+@Html.Hidden("BarrasCobertura", Url.Action("BarrasCobertura", "Relatorio"))
+@Html.Hidden("PizzaCoberturaNaoAbertas", Url.Action("PizzaCoberturaNaoAbertas", "Relatorio"))
+@Html.Hidden("PizzaCoberturaRecusa", Url.Action("PizzaCoberturaRecusa", "Relatorio"))
+@Html.Hidden("PizzaCoberturaFacilidade", Url.Action("PizzaCoberturaSemFacilidade", "Relatorio"))
+@Html.Hidden("DetalhamentoCobertura", Url.Action("DetalhamentoCobertura", "Relatorio"))
+
+<div class="wait">AGUARDE UM INSTANTE</div>
+<div class="error"></div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+            <div class="col-sm-3">
+                <div class="box-sm-c " style="margin-bottom: 20px; display: none; height: 400px">
+                    <h4 class="example-title">Filtros</h4>
+                    <table style="border-width: 0px; width: 100%;">
+                        <tr>
+                            <td style="width: 25%"> Data Inicio:</td>
+                            <td><input type="date" id="DtInicio" name="DtInicio" placeholder="Inicio" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 25%">Data Final:</td>
+                            <td><input type="date" id="DtFim" name="DtFim" placeholder="Fim" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button onclick="atualizaFiltros();" class="input form-control btn btn-danger">Aplicar Filtro</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="checkbox" name="Atualizar" id="Atualizar" value="true" onclick="AtualizarAutomaticamente()">Atualizar Automaticamente<br></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="box-sm-c" style="margin-bottom:20px;height:400px">
+                        <div id="ChartBarraCobertura" style="height:350px;width:100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+
+            <div class="col-sm-4">
+                <div class="box-sm-c " style="margin-bottom: 40px; display: none; height: 400px">
+                    <h4 class="example-title">Com Facilidade X Sem facilidade</h4>
+                    <div id="chartPizzaCoberturaSemFacilidade" style="height:325px;width:100%;"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="box-sm-c " style="margin-bottom: 40px; display: none; height: 400px">
+                    <h4 class="example-title">Não Possibilita Abertura X Recusa SOS</h4>
+                    <div id="chartPizzaCoberturaRecusa" style="height:325px;width:100%;"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="box-sm-c " style="margin-bottom: 40px; display: none; height: 400px">
+                    <h4 class="example-title">Abertas X Não Abertas</h4>
+                    <div id="chartPizzaCoberturaNaoAbertas" style="height:325px;width:100%;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+            <h4 class="example-title">Descrição dos Itens</h4>
+            <table class="table-internal" style="margin-top:15px;" id="tblDescricaoItens">
+                <thead>
+                    <tr class="tr-head">
+                        <th>
+                            #
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                            Descrição
+                        </th>
+                        <th>
+                            Quantidade
+                        </th>
+
+                        <th>
+                            Percentual
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>

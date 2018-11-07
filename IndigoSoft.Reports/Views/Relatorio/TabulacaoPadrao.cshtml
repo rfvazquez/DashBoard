@@ -1,0 +1,406 @@
+﻿@section scripts{
+    @Scripts.Render("~/Scripts/Relatorio/TabulacaoPadrao.js")
+}
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+@Html.Hidden("TabulacaoPadraoURL", Url.Action("TabulacaoPadraoGrid", "Relatorio"))
+@Html.Hidden("TabulacaoPadraoExportURL", Url.Action("TabulacaoPadraoExport", "Relatorio"))
+
+<script language="javascript" type="text/javascript">
+    function validar() {
+        if (form1.DT_INICIO.value == "" || form1.DT_FIM.value == "") {
+            alert("Preencha as datas para Exportar");
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
+<div class="wait">AGUARDE UM INSTANTE</div>
+<div class="error"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+            <div class="col-sm-3">
+                <div class="box-sm-c " style="margin-bottom: 20px; display: none; height: 400px">
+                    <h4 class="example-title">Filtros</h4>
+                    <form name="form1" action="@Url.Action("TabulacaoPadraoExport", "Relatorio")" method="post">
+                        <table style="border-width: 0px; width: 100%;">
+                            <tr>
+                                <td style="width: 25%"> Data Inicio:</td>
+                                <td><input type="date" id="DT_INICIO" name="DT_INICIO" placeholder="Inicio" class="form-control" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 25%">Data Final:</td>
+                                <td><input type="date" id="DT_FIM" name="DT_FIM" placeholder="Fim" class="form-control" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><button type="button" onclick="atualizaFiltros();" class="input form-control btn btn-danger">Aplicar Filtro</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><button data-url="@Url.Action("TabulacaoPadraoExport", "Relatorio")" onclick="return validar()"  class="input form-control btn btn-success">Exportar</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"><input type="checkbox" name="Atualizar" id="Atualizar" value="true" onclick="AtualizarAutomaticamente()">Atualizar Automaticamente<br></td>
+                            </tr>
+
+                        </table>
+                    </form>
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-sm-8">
+                        <div class="box-sm-c" style="margin-bottom:20px;height:400px">
+                            <div id="ChartTabulacaoGeral" style="height:350px;width:100%;"></div>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;width:100%;overflow:auto;">
+            <h4 class="example-title">Informações Gerais</h4>
+            <table class="table-internal" style="margin-top:10px;" id="tblDescricaoItens">
+                <thead>
+                    <tr class="tr-head" style="font-size:10px;">
+                        <th>
+                            CANALVENDAS
+                        </th>
+                        <th>
+                            DATARECEBIMENTOMAILING
+                        </th>
+                        <th>
+                            FORNECEDOR
+                        </th>
+                        <th>
+                            MAILING
+                        </th>
+                        <th>
+                            SEGMENTOOPERACAO
+                        </th>
+                        <th>
+                            TIPOOPERACAO
+                        </th>
+                        <th>
+                            TIPOCLIENTE
+                        </th>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            DATAHORAATENDIMENTO
+                        </th>
+                        <th>
+                            DDDTERMINALA
+                        </th>
+                        <th>
+                            DURACAOCONTATO
+                        </th>
+                        <th>
+                            INTENCAOCOMPRA
+                        </th>
+                        <th>
+                            NUMPROTUNICO
+                        </th>
+                        <th>
+                            TELEFONETERMINALA
+                        </th>
+                        <th>
+                            CALLBACK
+                        </th>
+                        <th>
+                            DDDTERMINALCALLBACK
+                        </th>
+                        <th>
+                            IDATENDIMENTOINICIAL
+                        </th>
+                        <th>
+                            TELEFONETERMINALCALLBACK
+                        </th>
+                        <th>
+                            BAIRRO
+                        </th>
+                        <th>
+                            CEP
+                        </th>
+                        <th>
+                            CIDADE
+                        </th>
+                        <th>
+                            COMPLEMENTO
+                        </th>
+                        <th>
+                            CPFCLIENTESOLICITANTE
+                        </th>
+                        <th>
+                            CPFTITULAR
+                        </th>
+                        <th>
+                            DATANASCIMENTOCLIENTESOLICITANTE
+                        </th>
+                        <th>
+                            DATANASCIMENTOTITULAR
+                        </th>
+                        <th>
+                            DDDCONTATO1
+                        </th>
+                        <th>
+                            DDDCONTATO2
+                        </th>
+                        <th>
+                            DDDTERMINALFIXA
+                        </th>
+                        <th>
+                            DDDTERMINAL
+                        </th>
+                        <th>
+                            EMAIL
+                        </th>
+                        <th>
+                            LOGRADOURO
+                        </th>
+                        <th>
+                            NOMECLIENTESOLICITANTE
+                        </th>
+                        <th>
+                            NOMEMAESOLICITANTE
+                        </th>
+                        <th>
+                            NOMEMAETITULAR
+                        </th>
+                        <th>
+                            NOMETITULAR
+                        </th>
+                        <th>
+                            NUMEROLOGRADOURO
+                        </th>
+                        <th>
+                            REGIONAL
+                        </th>
+                        <th>
+                            TELEFONECONTATO1
+                        </th>
+                        <th>
+                            TELEFONECONTATO2
+                        </th>
+                        <th>
+                            TELEFONETERMINALFIXA
+                        </th>
+                        <th>
+                            TELEFONETERMINAL
+                        </th>
+                        <th>
+                            TIPOLOG
+                        </th>
+                        <th>
+                            UF
+                        </th>
+                        <th>
+                            MATRICULASAPOPERADOR
+                        </th>
+                        <th>
+                            NOMEOPERADOR
+                        </th>
+                        <th>
+                            NOMESUPERVISOROPERACAO
+                        </th>
+                        <th>
+                            REOPERADOR
+                        </th>
+                        <th>
+                            MOTIVOSCOREVERMELHO
+                        </th>
+                        <th>
+                            SCOREV360
+                        </th>
+                        <th>
+                            SCOREVSCORE
+                        </th>
+                        <th>
+                            PRODUTOADQUIRIDO1
+                        </th>
+                        <th>
+                            PRODUTOADQUIRIDO2
+                        </th>
+                        <th>
+                            PRODUTOADQUIRIDO3
+                        </th>
+                        <th>
+                            PRODUTOADQUIRIDO4
+                        </th>
+                        <th>
+                            PRODUTOATUAL1
+                        </th>
+                        <th>
+                            PRODUTOATUAL2
+                        </th>
+                        <th>
+                            PRODUTOATUAL3
+                        </th>
+                        <th>
+                            PRODUTOATUAL4
+                        </th>
+                        <th>
+                            PRODUTOOFERTADO1
+                        </th>
+                        <th>
+                            PRODUTOOFERTADO2
+                        </th>
+                        <th>
+                            PRODUTOOFERTADO3
+                        </th>
+                        <th>
+                            PRODUTOOFERTADO4
+                        </th>
+                        <th>
+                            ADABASEMISSAO
+                        </th>
+                        <th>
+                            DATAHORACONCORDANCIA
+                        </th>
+                        <th>
+                            DTEMISSAO1
+                        </th>
+                        <th>
+                            DTEMISSAO2
+                        </th>
+                        <th>
+                            DTEMISSAO3
+                        </th>
+                        <th>
+                            DTEMISSAO4
+                        </th>
+                        <th>
+                            NUMEROOS1
+                        </th>
+                        <th>
+                            NUMEROOS2
+                        </th>
+                        <th>
+                            NUMEROOS3
+                        </th>
+                        <th>
+                            NUMEROOS4
+                        </th>
+                        <th>
+                            SITE
+                        </th>
+                        <th>
+                            STATUSEMISSAO
+                        </th>
+                        <th>
+                            TIPOPAGTO
+                        </th>
+                        <th>
+                            TROCATITULARIDADE
+                        </th>
+                        <th>
+                            MOTIVOFINALIZADOR
+                        </th>
+                        <th>
+                            RETORNOSIEBEL
+                        </th>
+                        <th>
+                            CONTAONLINE
+                        </th>
+                        <th>
+                            NOMEBANCO
+                        </th>
+                        <th>
+                            AGENCIA
+                        </th>
+                        <th>
+                            CONTA
+                        </th>
+                        <th>
+                            DIGITO
+                        </th>
+                        <th>
+                            DATAVENCIMENTO
+                        </th>
+                        <th>
+                            ACERTIVIDADE
+                        </th>
+                        <th>
+                            SVA 1
+                        </th>
+                        <th>
+                            SVA 2
+                        </th>
+                        <th>
+                            SVA 3
+                        </th>
+                        <th>
+                            SVA 4
+                        </th>
+                        <th>
+                            DISPONIBILIDADE DE FIBRA
+                        </th>
+                        <th>
+                            OFERTA FIBRA
+                        </th>
+                        <th>
+                            TRANSFERENCIA SAVE
+                        </th>
+                        <th>
+                            APTO ADSL
+                        </th>
+                        <th>
+                            TRANSFERENCIA ADSL
+                        </th>
+                        
+                        
+                        
+
+                        <th>
+                            PACOTE OUTRA CHANCE
+                        </th>
+                        <th>
+                            MOTIVO FINALIZADOR OUTRA CHANCE
+                        </th>
+                        <th>
+                            ID INBOUND PARA OUTRA CHANCE
+                        </th>
+                        <th>
+                            SOLO
+                        </th>
+                        <th>
+                            TRANSFERENCIA FORA ESCOPO
+                        </th>
+                        <th>
+                            PERFIL CLIENTE
+                        </th>
+                    </tr>
+                </thead>
+                <tbody style="font-size:10px;"></tbody>
+            </table>
+        </div>
+    </div>
+</div>

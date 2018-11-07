@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Indigo - Reports</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Styles/Utils/main.css")
+    @Styles.Render("~/Styles/Utils/animate.css")
+    @Styles.Render("~/Styles/Utils/bootstrap.css")
+    <link href="~/Styles/dataTables.jqueryui.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/main.js")
+    <script src="~/Scripts/datatable.js"></script>
+    <script src="~/Scripts/dataTables.jqueryui.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    @RenderSection("scripts", required: false)
+    <link id="favicon" href="~/favicon.ico" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+    <div class="top">
+        <div>
+            <img src="~/Images/list.png" class="menu" />
+            <img src="~/Images/LogoIndigo.png" class="logo" />
+            @*<div class="indigo" style="color:white;margin-top:20px;cursor:pointer" onclick="window.open('http://indigosoft.tech/')">Indigosoft</div>*@
+        </div>
+    </div>
+
+    <div class="menu-bg">
+        <div class="menu-painel">
+            @*
+                <div class="menu-item" onclick="window.location.href='@Url.Action("Index", "Home")'">
+                    <div class="img-m"><img src="~/Images/dashboard.png" /></div>
+                    <div class="desc-m">Funil</div>
+                </div>
+
+                <div class="menu-item" onclick="window.location.href='@Url.Action("Normativo", "Relatorio")'">
+                    <div class="img-m"><img src="~/Images/acessos.png" /></div>
+                    <div class="desc-m">Normativo</div>
+                </div>
+
+                <div class="menu-item" onclick="window.location.href='@Url.Action("Cobertura", "Relatorio")'">
+                    <div class="img-m"><img src="~/Images/fatura.png" /></div>
+                    <div class="desc-m">Cobertura</div>
+                </div>
+
+                <div class="menu-item" onclick="window.location.href='@Url.Action("DashBoardOperador", "Relatorio")'">
+                    <div class="img-m"><img src="~/Images/campanha.png" /></div>
+                    <div class="desc-m">Funil por Operador</div>
+                </div>
+
+                <div class="menu-item" onclick="window.location.href='@Url.Action("TransferenciaMovel", "Relatorio")'">
+                    <div class="img-m"><img src="~/Images/import.png" /></div>
+                    <div class="desc-m">Acompanhamento Transferências Movel</div>
+                </div>
+
+                <div class="menu-item" onclick="window.location.href='@Url.Action("VendasPendentes", "Relatorio")'">
+                    <div class="img-m"><img src="~/Images/fatura.png" /></div>
+                    <div class="desc-m">Vendas Pendentes</div>
+                </div>
+                <div class="menu-item" onclick="window.location.href = '@Url.Action("DetalhamentoTabulacao", "Relatorio")'">
+                    <div class="img-m"><img src="~/Images/Calendario.png" /></div>
+                    <div class="desc-m">Detalhamento Tabulação</div>
+                </div>
+                <div class="menu-item" onclick="window.location.href = '@Url.Action("TabulacaoPadrao", "Relatorio")'">
+                    <div class="img-m"><img src="~/Images/Calendario.png" /></div>
+                    <div class="desc-m">Tabulação Padrão</div>
+                </div>
+
+
+                @{
+                    if (@HttpContext.Current.Session["USUARIO"].ToString() == "renan.vazquez")
+                    {
+                        <div class="menu-item" onclick=" window.location.href='@Url.Action("SqlCommand", "Supervisao")' "><div class=" img-m">
+                            <img src="~/Images/SqlCommand.png" />
+                        </div>
+                        <div class="desc-m">SQL Command</div>
+                    </div>
+                    }
+                }
+
+        <div class="menu-item" onclick="window.location.href = '@Url.Action("Index", "Import")'">
+            <div class="img-m"><img src="~/Images/Import.png"/>
+            </div>
+            <div class="desc-m">Importação de Arquivos</div>
+        </div>
+        <div class="menu-item" onclick="window.location.href='@Url.Action("Cadastrar", "Campanha")'">
+            <div class="img-m"><img src="~/Images/campanha.png" /></div>
+            <div class="desc-m">Cadastrar Campanha</div>
+        </div>
+
+        <div class="menu-item" onclick="window.location.href='@Url.Action("Index", "Feriados")'">
+            <div class="img-m"><img src="~/Images/Calendario.png" /></div>
+            <div class="desc-m">Feriados</div>
+        </div>*@
+
+
+            <div class="menu-item logout" onclick="window.location.href='@Url.Action("Logout", "Usuario")'">
+                <div class="img-m"><img src="~/Images/logout.png" style=" margin-left: 2px;" /></div>
+                <div class="desc-m">Sair</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="clear:both;height:60px;"></div>
+
+    <div class="painel">
+        @RenderBody()
+    </div>
+
+
+</body>
+</html>

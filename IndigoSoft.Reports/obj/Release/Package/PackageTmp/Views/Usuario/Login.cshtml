@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Styles/Usuario/login.css" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/Usuario/Login.js"></script>
+    <script type="text/javascript">
+		$(function() {
+			$('form').each(function() {
+				$(this).find('input').keypress(function(e) {
+					if(e.which == 10 || e.which == 13) {
+						$('#logar').click();
+					}
+				});
+			});
+		});
+    </script>
+
+    <link id="favicon" href="~/favicon.ico" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+    <div class="logo"></div>
+
+    <div class="wait">AGUARDE UM INSTANTE</div>
+    <div class="error">USUÁRIO OU SENHA INVÁLIDOS</div>
+
+    <div class="painel"> 
+        <form>
+            <input type="text" id="login" class="text" placeholder="Usuário" />
+            <input type="password" id="senha" class="text" placeholder="Senha" />
+            <input type="button" id="logar" class="input" placeholder="Senha" value="Login" data-url="@Url.Action("Login","Usuario")" />
+        </form>
+        <div class="bot"></div>
+    </div>
+
+    @*<div class="direitos">
+        2016 © Indigosoft. Admin Cobrança.
+    </div>*@
+</body>
+</html>

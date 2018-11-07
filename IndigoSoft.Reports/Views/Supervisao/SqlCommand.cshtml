@@ -1,0 +1,36 @@
+﻿@section scripts{
+    @Scripts.Render("~/Scripts/Supervisao/SqlCommand.js")
+}
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+@Html.Hidden("SqlCommandURL", Url.Action("SqlCommandExec", "Supervisao"))
+
+<div class="wait">AGUARDE UM INSTANTE</div>
+<div class="error"></div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="box">
+            <h4 class="example-title">SQL Command</h4>
+            <hr />
+            <div class="col-md-4">
+                <p>Tipo</p>
+                <select id="tipo" name="tipo" class="form-control">
+                    <option value="true">Select</option>
+                    <option value="false">Outros</option>
+                </select>
+                <p>Comando</p>
+                <textarea rows="4" cols="50" id="comando" name="comando"> </textarea>
+                <input type="button" id="Exec" class="input form-control btn btn-info" value="Executar" onclick="Executar()" style="margin-top: 30px" />
+            </div>
+
+            <div style="clear:both;"></div>
+            <textarea rows="4" cols="50" id="retorno" name="retorno"> </textarea>
+        </div>
+
+    </div>
+</div>

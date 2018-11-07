@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Infra.Repositories.SQLData.pr_AcessosResult>
+
+
+@{
+    Layout = null;
+}
+
+@foreach(var item in Model)
+{
+    <tr>
+        <td></td>
+        <td>
+            @item.CPF
+        </td>
+        <td>
+            @item.Nome
+        </td>
+        <td>
+            @item.Telefone
+        </td>
+        <td>
+            @item.Email
+        </td>
+        <td>
+            @item.Visualizou_a_Fatura
+        </td>
+        <td>
+            @item.Mailing_Origem
+        </td>
+        <td>
+            @item.Data_Hora_Acesso_Site
+        </td>
+        <td>
+            @item.Data_Hora_Ultimo_Disparo
+        </td>
+      
+    </tr>
+}
+

@@ -1,0 +1,51 @@
+﻿@model Infra.Repositories.SQLData.vw_Recuperacao
+
+
+@{
+
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <h4 class="example-title">Recuperação</h4>
+            <div class="wait">AGUARDE UM INSTANTE</div>
+            <input type="text" id="cpf" class="text" placeholder="Cpf" />
+            <input type="button" id="buscar" class="input" placeholder="Buscar" value="Bucar" data-url="@Url.Action("Recuperacao","Relatorio")" />
+
+            <table class="table-internal">
+                <thead>
+                    <tr class="tr-head">
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            CPF
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Telefone
+                        </th>
+                        <th>
+                            Mailing de Origem
+                        </th>
+                        <th>
+                            Mês Base
+                        </th>
+                        <th>
+                            Valor da baixa
+                        </th>
+                        <th>
+                            Data da baixa
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="result">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

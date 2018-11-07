@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Indigosoft_Workflow_WoozaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Indigosoft_Workflow_WoozaEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="STP_LOGIN_DASHBOARD" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.UsuarioResult)">
+      <Parameter Name="login" Mode="In" Type="String" />
+      <Parameter Name="senha" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="STP_TOTAL_TIPO_DASHBOARD" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.TotalTipoResult)">
+      <Parameter Name="DtInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="DtFim" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="STP_DETALHAMENTO_DASHBOARD" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.DetalhamentoResult)">
+      <Parameter Name="DtInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="DtFim" Mode="In" Type="DateTime" />
+      <Parameter Name="modalidade" Mode="In" Type="String" />
+      <Parameter Name="tipo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="STP_DETALHAMENTO_ERROS_SIEBEL" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.DetalhamentoErroSiebelResult)">
+      <Parameter Name="DtInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="DtFim" Mode="In" Type="DateTime" />
+      <Parameter Name="Modalidade" Mode="In" Type="String" />
+      <Parameter Name="Tabulacao" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="STP_CONTROLE_FILA" ReturnType="Collection(Indigosoft_Workflow_WoozaModel.ControleFila)" />
+  </EntityContainer>
+  <ComplexType Name="UsuarioResult">
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Nome" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Senha" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="TotalTipoResult">
+    <Property Type="String" Name="Modalidade" Nullable="false" />
+    <Property Type="Int32" Name="Sucesso" Nullable="false" />
+    <Property Type="Int32" Name="Erro" Nullable="false" />
+    <Property Type="Decimal" Name="Resultado" Nullable="false" />
+    <Property Type="Int32" Name="Aptas" Nullable="false" />
+    <Property Type="Decimal" Name="PercentualAptas" Nullable="false" />
+    <Property Type="String" Name="CorLinha" Nullable="false" />
+    <Property Type="Int32" Name="Total" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="DetalhamentoResult">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="CorLinha" Nullable="false" />
+    <Property Type="String" Name="Modalidade" Nullable="false" />
+    <Property Type="String" Name="Tabulacao" Nullable="false" />
+    <Property Type="Int32" Name="Total" Nullable="false" />
+    <Property Type="Decimal" Name="percentual" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="DetalhamentoErroSiebelResult">
+    <Property Type="String" Name="CPF" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Nome" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="nacimento" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="NomeMae" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Sexo" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Telefone" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Plano" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="tpPagamento" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="modeloPagamento" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="CEP" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="pais" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="estado" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="cidade" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="rua" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="numero" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="complemento" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="criacao" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="modificacao" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="numeroPedido" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="CodPDV" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="numeroChip" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="modalidade" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="diaPgt" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="operadora" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="operadoraAtual" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="tp" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="tabulacaoWooza" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="descricao" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="janelaPortabilidade" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="CorLinha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ControleFila">
+    <Property Type="String" Name="FILA" Nullable="false" />
+    <Property Type="Int32" Name="TOTAL_DISPONIVEIS" Nullable="false" />
+    <Property Type="Int32" Name="INSTANCIAS" Nullable="false" />
+    <Property Type="Int32" Name="EM_USO" Nullable="false" />
+    <Property Type="Int32" Name="MAQUINAS" Nullable="false" />
+  </ComplexType>
+</Schema>

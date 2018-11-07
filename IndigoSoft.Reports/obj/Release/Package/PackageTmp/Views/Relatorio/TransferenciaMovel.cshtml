@@ -1,0 +1,127 @@
+﻿@section scripts{
+    @Scripts.Render("~/Scripts/Relatorio/TransferenciaMovel.js")
+}
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+@Html.Hidden("DashBoardTabulacoesUrl", Url.Action("DashBoardTabulacoesMovel", "Relatorio"))
+@Html.Hidden("DashBoardDetalhamentoTabulacoesUrl", Url.Action("DashBoardDetalhamentoMovel", "Relatorio"))
+@Html.Hidden("DashBoardConversaoTotalUrl", Url.Action("DashBoardConversaoTotalMovel", "Relatorio"))
+@Html.Hidden("DashBoardConversaoAptasUrl", Url.Action("DashBoardConversaoAptasMovel", "Relatorio"))
+@Html.Hidden("DashBoardConversaoProdutivasUrl", Url.Action("DashBoardConversaoProdutivasMovel", "Relatorio"))
+
+<div class="wait">AGUARDE UM INSTANTE</div>
+<div class="error"></div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+            <div class="col-sm-3">
+                <div class="box-sm-c " style="margin-bottom: 20px; display: none; height: 400px">
+                    <h4 class="example-title">Filtros</h4>
+                    <table style="border-width: 0px; width: 100%;">
+                        <tr>
+                            <td style="width: 25%"> Data Inicio:</td>
+                            <td><input type="date" id="DtInicio" name="DtInicio" placeholder="Inicio" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 25%">Data Final:</td>
+                            <td><input type="date" id="DtFim" name="DtFim" placeholder="Fim" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button onclick="atualizaFiltros();" class="input form-control btn btn-danger">Aplicar Filtro</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="checkbox" name="Atualizar" id="Atualizar" value="true" onclick="AtualizarAutomaticamente()">Atualizar Automaticamente<br></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="box-sm-c" style="margin-bottom:20px;height:400px">
+                        <div id="ChartTabulacao" style="height:350px;width:100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+
+            <div class="col-sm-4">
+                <div class="box-sm-c " style="margin-bottom: 40px; display: none; height: 400px">
+                    <h4 class="example-title">Conversão Cliente / Atendidas</h4>
+                    <div id="gaudgeConversao1" style="height:325px;width:100%;"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="box-sm-c " style="margin-bottom: 40px; display: none; height: 400px">
+                    <h4 class="example-title">Conversão Cliente / Produtivas</h4>
+                    <div id="gaudgeConversao2" style="height:325px;width:100%;"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="box-sm-c " style="margin-bottom: 40px; display: none; height: 400px">
+                    <h4 class="example-title">Conversão Cliente / Aptas</h4>
+                    <div id="gaudgeConversao3" style="height:325px;width:100%;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box" style="display:none;">
+            <h4 class="example-title">Descrição dos Itens</h4>
+            <table class="table-internal" style="margin-top:15px;" id="tblDescricaoItens">
+                <thead>
+                    <tr class="tr-head">
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Tabulação
+                        </th>
+                        <th>
+                            Quantidade
+                        </th>
+                        <th>
+                            Percentual
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
