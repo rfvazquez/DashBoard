@@ -196,9 +196,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RecuperacaoController.cs" />
-    <Compile Include="Controllers\RelatorioController.cs" />
-    <Compile Include="Controllers\SupervisaoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DataBase\DataAccess\ControleFila.cs">
       <DependentUpon>IndigoModel.tt</DependentUpon>
@@ -437,14 +434,6 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Relatorio\DashBoardOperador.js" />
-    <Content Include="Scripts\Relatorio\Cobertura.js" />
-    <Content Include="Scripts\Relatorio\DetalhamentoTabulacao.js" />
-    <Content Include="Scripts\Relatorio\main.js" />
-    <Content Include="Scripts\Relatorio\TabulacaoPadrao.js" />
-    <Content Include="Scripts\Relatorio\TransferenciaMovel.js" />
-    <Content Include="Scripts\Relatorio\VendasPendentes.js" />
-    <Content Include="Scripts\Supervisao\SqlCommand.js" />
     <Content Include="Scripts\Usuario\Login.js" />
     <Content Include="Styles\dataTables.bootstrap.css" />
     <Content Include="Styles\dataTables.bootstrap.min.css" />
@@ -529,12 +518,6 @@
     <Content Include="Styles\Utils\bootstrap.css.map" />
     <Content Include="Styles\Utils\bootstrap.min.css.map" />
     <Content Include="Views\Usuario\Login.cshtml" />
-    <Content Include="Views\Relatorio\Acessos.cshtml" />
-    <Content Include="Views\Relatorio\Cobertura.cshtml" />
-    <Content Include="Views\Relatorio\Normativo.cshtml" />
-    <Content Include="Views\Relatorio\_ListaAcessos.cshtml" />
-    <Content Include="Views\Recuperacao\Index.cshtml" />
-    <Content Include="Views\Recuperacao\_Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -544,9 +527,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Relatorio\DashBoardOperador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Sorting icons.psd">
@@ -561,11 +541,6 @@
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Relatorios.pubxml" />
-    <Content Include="Views\Relatorio\TransferenciaMovel.cshtml" />
-    <Content Include="Views\Relatorio\VendasPendentes.cshtml" />
-    <Content Include="Views\Relatorio\DetalhamentoTabulacao.cshtml" />
-    <Content Include="Views\Relatorio\TabulacaoPadrao.cshtml" />
-    <Content Include="Views\Supervisao\SqlCommand.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
