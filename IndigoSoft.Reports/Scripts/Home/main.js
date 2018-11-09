@@ -3,6 +3,68 @@ var dModalidade = {};
 var pdata2 = {};
 var myVar;
 var cont = 1;
+
+
+function atualizaSemSlide() {
+
+    $(".error").slideUp(300);
+
+    $.ajax({
+        url: $("#DashBoardTabulacoesUrl").val(),
+        data: pdata,
+        type: 'POST',
+        success: function (result) {
+            DashBoardTabulacoes(result);
+            CarregaDetalhamento(result);
+        }
+    });
+
+
+    $.ajax({
+        url: $("#DashBoardFilaUrl").val(),
+        data: pdata,
+        type: 'POST',
+        success: function (result) {
+            DashBoardFila(result);
+            CarregaFila(result);
+        }
+    });
+
+
+}
+
+function atualizar() {
+
+    $(".error").slideUp(300);
+    $("#divModalAguarde").modal();
+
+
+    $.ajax({
+        url: $("#DashBoardTabulacoesUrl").val(),
+        data: pdata,
+        type: 'POST',
+        success: function (result) {
+            DashBoardTabulacoes(result);
+            CarregaDetalhamento(result);
+
+            $.ajax({
+                url: $("#DashBoardFilaUrl").val(),
+                data: pdata,
+                type: 'POST',
+                success: function (result) {
+                    DashBoardFila(result);
+                    CarregaFila(result);
+                    $("#divModalAguarde").modal('hide');
+                }
+            });
+
+        }
+    });
+
+
+
+}
+
 function atualizaFiltros() {
 
     if ($("#DtInicio").val() === "") {
@@ -33,7 +95,6 @@ function atualizaFiltros() {
 
 }
 
-
 $(document).ready(function () {
 
     google.charts.load("current", { packages: ["corechart", 'bar'] });
@@ -55,15 +116,8 @@ $(document).ready(function () {
     $(".box-color").addClass("animated");
     $(".box-color").addClass("bounceIn");
     $(".box-color").show();
-
-    setTimeout(function () {
-        $(".box-color").addClass("animated");
-        $(".box-color").addClass("bounceIn");
-        $(".box-color").show();
-    }, 800);
     atualizaFiltros();
 });
-
 
 function AtualizarAutomaticamente() {
     var check = $("#Atualizar").is(":checked");
@@ -76,6 +130,7 @@ function AtualizarAutomaticamente() {
 function escapeRegExp(str) {
     return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
+
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
@@ -102,11 +157,8 @@ function CarregaFila(dados) {
     }
 }
 
-
-
-
-
 function CarregaDetalhes(modalidade, tipo) {
+    $("#divModalAguarde").modal();
     var tabela = "";
     var linhas = "";
     var grafico = "";
@@ -128,13 +180,15 @@ function CarregaDetalhes(modalidade, tipo) {
         } else {
             $("#tblDetalhamento > tbody").empty();
         }
+        $("#divModalAguarde").modal('hide');
+        $("#NomeModalidade").html(replaceAll(modalidade, "_", " "));
+        $("#dadosDetalhado").modal();
     });
-    $("#NomeModalidade").html(replaceAll(modalidade, "_", " "));
-    $("#dadosDetalhado").modal();
+
 }
 
-
 function CarregaDetalhesErro(modalidade, tabulacao) {
+    $("#divModalAguarde").modal();
     var tabela = "";
     var linhas = "";
     var grafico = "";
@@ -180,9 +234,10 @@ function CarregaDetalhesErro(modalidade, tabulacao) {
         } else {
             $("#tblDetalhamentoErro > tbody").empty();
         }
+        $("#divModalAguarde").modal('hide');
+        $("#NomeModalidadeErro").html(replaceAll(modalidade, "_", " ") + " - " + replaceAll(tabulacao, "_", " "));
+        $("#dadosDetalhadoErroSiebel").modal();
     });
-    $("#NomeModalidadeErro").html(replaceAll(modalidade, "_", " ") + " - " + replaceAll(tabulacao, "_", " "));
-    $("#dadosDetalhadoErroSiebel").modal();
 }
 
 function CarregaConversoes() {
@@ -245,64 +300,6 @@ function CarregaDetalhamento(dados) {
     }
 }
 
-function atualizaSemSlide() {
-    $.ajax({
-        url: $("#DashBoardTabulacoesUrl").val(),
-        data: pdata,
-        type: 'POST',
-        success: function (result) {
-            DashBoardTabulacoes(result);
-            CarregaDetalhamento(result);
-        }
-    });
-
-
-    $.ajax({
-        url: $("#DashBoardFilaUrl").val(),
-        data: pdata,
-        type: 'POST',
-        success: function (result) {
-            DashBoardFila(result);
-            CarregaFila(result);
-        }
-    });
-
-
-}
-
-
-function atualizar() {
-
-    $(".error").slideUp(300);
-    $(".wait").slideDown(300);
-
-    $.ajax({
-        url: $("#DashBoardTabulacoesUrl").val(),
-        data: pdata,
-        type: 'POST',
-        success: function (result) {
-            DashBoardTabulacoes(result);
-            CarregaDetalhamento(result);
-        }
-    });
-
-    $.ajax({
-        url: $("#DashBoardFilaUrl").val(),
-        data: pdata,
-        type: 'POST',
-        success: function (result) {
-            DashBoardFila(result);
-            CarregaFila(result);
-        }
-    });
-
-
-    $(".error").slideUp(300);
-    $(".wait").slideUp(300);
-
-}
-
-
 function DashBoardConversao(json, div) {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -327,8 +324,6 @@ function DashBoardConversao(json, div) {
         chart.draw(data, options);
     }
 }
-
-
 
 function fnExcelReport(tabela) {
     var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
